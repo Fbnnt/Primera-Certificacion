@@ -22,7 +22,7 @@ def procesar_registro():
     session['usuario_id'] = usuario_id
     session['nombre'] = usuario_db.nombre
     flash("¡Registro exitoso!", 'exito')
-    return redirect('/dashboard')
+    return redirect('/asesorias')
 
 @bp.route('/procesar_login', methods=['POST'])
 def procesar_login():
@@ -43,7 +43,7 @@ def procesar_login():
     session['usuario_id'] = usuario_db.id
     session['nombre'] = usuario_db.nombre
     flash(f"¡Bienvenido de nuevo, {usuario_db.nombre}!", 'exito')
-    return redirect('/dashboard')
+    return redirect('/asesorias')
 
 @bp.route('/logout')
 def logout():

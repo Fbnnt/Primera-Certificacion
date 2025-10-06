@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Asesorías{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h2>Bienvenid@, {{ session['nombre'] }}</h2>
+  <div class="link-actions">
+    <a href="/asesorias/nueva" class="link-simple">Solicitar Asesoría</a>
+    <a href="/usuarios/logout" class="link-simple">Cerrar Sesión</a>
+  </div>
+</div>
+<h3>Todas las Asesorías</h3>
+<table class="table-wire">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Fecha</th>
+      <th>Duración</th>
+      <th>Tutor</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for a in asesorias %}
+    <tr>
+      <td><a href="/asesorias/ver/{{ a.id }}">{{ a.titulo }}</a></td>
+      <td>{{ a.fecha | format_date('%Y-%m-%d') }}</td>
+      <td>{{ a.duracion }}h</td>
+      <td>{{ a.tutor or 'Sin asignar' }}</td>
+      <td>
+        <a href="/asesorias/ver/{{ a.id }}" class="link-simple">Ver</a>
+        {% if a.creador_id == session['usuario_id'] %}
+          <a href="/asesorias/editar/{{ a.id }}" class="link-simple">Editar</a>
+          <a href="/asesorias/borrar/{{ a.id }}" class="link-simple">Borrar</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+
+

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Ver Asesoría{% endblock %}
+{% block content %}
+<a href="/asesorias" class="link-simple">Inicio</a>
+<a href="/usuarios/logout" class="link-simple ms-3">Cerrar Sesión</a>
+<h3>Ver Asesoría</h3>
+<div class="form-wire" style="max-width:600px;">
+  <h4>{{ asesoria.titulo }}</h4>
+  <p><strong>Solicitada por:</strong> {{ asesoria.autor }}</p>
+  <p><strong>Fecha:</strong> {{ asesoria.fecha | format_date('%Y-%m-%d') }}</p>
+  <p><strong>Duración:</strong> {{ asesoria.duracion }} horas</p>
+  <p><strong>Notas:</strong> {{ asesoria.notas or '—' }}</p>
+  <p><strong>Tutor Actual:</strong> {{ asesoria.tutor or 'Sin asignar' }}</p>
+  <hr>
+  <h5>Tutor</h5>
+  <form action="/asesorias/{{ asesoria.id }}/cambiar_tutor" method="post" class="mb-3">
+    <div class="row g-2 align-items-center">
+      <div class="col-auto">
+        <select name="tutor_id" class="form-select">
+          <option value="">-- Seleccionar tutor --</option>
+          {% for u in usuarios %}
+          {% if u.id != asesoria.creador_id %}
+          <option value="{{ u.id }}" {% if asesoria.tutor_id == u.id %}selected{% endif %}>{{ u.nombre }} {{ u.apellido }}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Cambiar Tutor</button>
+      </div>
+    </div>
+  </form>
+  <div class="mt-2">
+    {% if asesoria.creador_id == session['usuario_id'] %}
+      <a href="/asesorias/editar/{{ asesoria.id }}" class="btn btn-warning">Editar</a>
+      <a href="/asesorias/borrar/{{ asesoria.id }}" class="btn btn-danger">Borrar</a>
+    {% endif %}
+  </div>
+</div>
+
+<h3>Cambiar tutor</h3>
+<form action="/asesorias/{{ asesoria.id }}/cambiar_tutor" method="post" class="mb-3">
+  <div class="row g-2 align-items-center">
+    <div class="col-auto">
+      <select name="tutor_id" class="form-select">
+        <option value="">-- Seleccionar tutor --</option>
+        {% for u in usuarios %}
+        {% if u.id != asesoria.creador_id %}
+        <option value="{{ u.id }}" {% if asesoria.tutor_id == u.id %}selected{% endif %}>{{ u.nombre }} {{ u.apellido }}</option>
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary">Actualizar</button>
+    </div>
+  </div>
+</form>
+
+<div class="mt-3"></div>
+{% endblock %}
+
+

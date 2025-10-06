@@ -1,9 +1,8 @@
-/* styles.css - Estilos personalizados para Citas Famosas */
+/* styles.css - Estilos personalizados para Tutorías */
 
 body {
-    background-color: #f8f9fa;
-    font-family: 'Segoe UI', 'Arial', sans-serif;
-    margin: 30px;
+    background-color: #f5f5f5;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 .navbar-brand {
@@ -16,9 +15,7 @@ footer {
     color: #fff;
 }
 
-.card {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
+.card { box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
 
 .btn {
     margin-right: 5px;
@@ -33,11 +30,7 @@ ul {
     padding-left: 1.2rem;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+.header { display: flex; justify-content: space-between; align-items: center; }
 
 .logout {
     color: #007bff;
@@ -45,61 +38,30 @@ ul {
     font-weight: bold;
 }
 
-.trip-table {
+.table-wire {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     background: #fff;
 }
 
-.trip-table th, .trip-table td {
-    border: 1px solid #ccc;
-    padding: 8px 12px;
-    text-align: left;
-}
+.table-wire th, .table-wire td { border: 1px solid #d9d9d9; padding: 8px 12px; text-align: left; }
 
-.trip-table th {
-    background: #eaeaea;
-}
+.table-wire th { background: #efefef; }
 
-.add-trip-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 16px;
-    background: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-}
+.link-actions { display: inline-flex; gap: 8px; align-items: center; }
+.link-simple { color: #0d6efd; text-decoration: none; }
+.link-simple:hover { text-decoration: underline; }
 
-.add-trip-form {
-    background: #fff;
-    padding: 20px;
-    border-radius: 6px;
-    width: 350px;
-}
+.form-wire { background: #fff; padding: 16px; border-radius: 6px; max-width: 440px; }
 
-.add-trip-form label {
-    display: block;
-    margin-top: 10px;
-}
+.form-wire label { display: block; margin-top: 10px; }
 
-.add-trip-form input {
-    width: 100%;
-    padding: 6px;
-    margin-top: 4px;
-}
+.form-wire input, .form-wire select { width: 100%; padding: 6px; margin-top: 4px; }
+.form-wire .help { color: #6c757d; font-size: 0.9rem; }
 
-.add-trip-form button {
-    margin-top: 15px;
-    padding: 8px 16px;
-    background: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-}
+.form-wire button { margin-top: 14px; }
 
-.flash-messages {
-    color: red;
-    margin-bottom: 10px;
-}
+.flash-messages { color: #a52834; margin-bottom: 10px; }
+
+.page-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }

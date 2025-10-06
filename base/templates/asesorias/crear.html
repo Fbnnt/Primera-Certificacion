@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Nueva Asesoría{% endblock %}
+{% block content %}
+<a href="/asesorias" class="link-simple">Inicio</a>
+<a href="/usuarios/logout" class="link-simple ms-3">Cerrar Sesión</a>
+<h3>Solicitar Asesoría</h3>
+<form action="/asesorias/crear" method="post" class="form-wire">
+  <div>
+    <label class="form-label">Título</label>
+    <input type="text" name="titulo" class="form-control" required>
+  </div>
+  <div>
+    <label class="form-label">Fecha</label>
+    <input type="date" name="fecha" class="form-control" required>
+  </div>
+  <div>
+    <label class="form-label">Duración (1-8 horas)</label>
+    <input type="number" name="duracion" min="1" max="8" class="form-control" required>
+  </div>
+  <div>
+    <label class="form-label">Notas (máx 50 caracteres)</label>
+    <input type="text" name="notas" maxlength="50" class="form-control">
+  </div>
+  <div>
+    <label class="form-label">Tutor</label>
+    <select name="tutor_id" class="form-select">
+      <option value="">-- Seleccionar tutor --</option>
+      {% for u in usuarios %}
+      <option value="{{ u.id }}">{{ u.nombre }} {{ u.apellido }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Guardar</button>
+  <a href="/asesorias" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
+
+
