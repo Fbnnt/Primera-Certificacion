@@ -1,0 +1,33 @@
+{#
+editar_cita.html
+Template para editar una cita existente.
+Hereda de base.html para mantener el diseño y navegación.
+- Formulario para modificar el texto de la cita.
+- Muestra mensajes flash para errores y validaciones.
+#}
+{% extends 'base.html' %}
+{% block title %}Editar Cita{% endblock %}
+{% block content %}
+<h1>Editar Cita</h1>
+<!-- Enlace para volver al dashboard de citas -->
+<a href="/citas" class="btn btn-secondary mb-3">Volver al Dashboard</a>
+<!-- Mensajes flash para mostrar errores y validaciones de la cita -->
+{% with messages = get_flashed_messages(category_filter=['cita']) %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+<!-- Formulario para editar la cita -->
+<form action="/citas/procesar_editar" method="post">
+    <input type="hidden" name="id" value="{{ cita.id }}">
+    <div class="mb-3">
+        <label for="cita" class="form-label">Cita:</label>
+        <textarea name="cita" class="form-control">{{ cita.cita }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-warning">Actualizar</button>
+</form>
+{% endblock %}

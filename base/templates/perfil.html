@@ -1,0 +1,26 @@
+{#
+perfil.html
+Template para mostrar la información del perfil del usuario.
+Hereda de base.html para mantener el diseño y navegación.
+- Muestra nombre del usuario y total de citas publicadas.
+- Lista todas las citas del usuario con opciones de editar y borrar.
+#}
+{% extends 'base.html' %}
+{% block title %}Mi Perfil{% endblock %}
+{% block content %}
+<h1>Perfil de {{ usuario.nombre|capitalize }}</h1>
+<h3>Total de citas publicadas: {{ total_citas }}</h3>
+<h2>Mis Citas</h2>
+<!-- Listado de citas del usuario -->
+{% for cita in citas %}
+<div class="card mb-3">
+    <div class="card-body">
+        <p class="card-text">"{{ cita.cita }}"</p>
+        <p class="text-muted">Publicada el: {{ cita.creado_en | format_date }}</p>
+        <!-- Botones para editar y borrar la cita -->
+        <a href="/citas/editar/{{ cita.id }}" class="btn btn-outline-warning btn-sm">Editar</a>
+        <a href="/citas/borrar/{{ cita.id }}" class="btn btn-outline-danger btn-sm">Borrar</a>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

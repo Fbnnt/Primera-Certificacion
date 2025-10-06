@@ -1,0 +1,41 @@
+# Entornos virtuales comunes
+venv/
+.venv/
+env/
+ENV/
+env-todo/
+# Entorno virtual
+env-todo/
+
+# Archivos de Python compilados
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de configuración y logs
+*.log
+*.sqlite3
+
+# Archivos de sistema y editor
+.DS_Store
+.vscode/
+.idea/
+
+# Archivos de base de datos
+*.db
+
+# Archivos de entorno
+.env
+
+# Archivos de migraciones
+migrations/
+
+# Archivos de pruebas
+.coverage
+htmlcov/
+
+# Otros
+*.bak
+*.swp
+*.swo

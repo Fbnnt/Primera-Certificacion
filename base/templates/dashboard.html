@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h2>Welcome {{ session['nombre'] }}!</h2>
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+    <h3>Your Trip Schedules</h3>
+    <table class="trip-table">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Travel Start Date</th>
+                <th>Travel End Date</th>
+                <th>Planned For</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for viaje in viajes_usuario %}
+            <tr>
+                <td><a href="/viaje/{{ viaje.id }}">{{ viaje.destino }}</a></td>
+                <td>{{ viaje.fecha_inicio.strftime('%B %d %Y') }}</td>
+                <td>{{ viaje.fecha_fin.strftime('%B %d %Y') }}</td>
+                <td>{{ viaje.descripcion }}</td>
+                <td>
+                    {% if viaje.planificador_id == session['usuario_id'] %}
+                        <a href="/viaje/eliminar/{{ viaje.id }}">Delete</a>
+                    {% else %}
+                        <a href="/viaje/cancelar/{{ viaje.id }}">Cancel</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Other User's Travel Plans</h3>
+    <table class="trip-table">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Travel Start Date</th>
+                <th>Travel End Date</th>
+                <th>Do You Want to Join?</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for viaje in viajes_otros %}
+            <tr>
+                <td>{{ viaje.destino }}</td>
+                <td>{{ viaje.fecha_inicio.strftime('%B %d %Y') }}</td>
+                <td>{{ viaje.fecha_fin.strftime('%B %d %Y') }}</td>
+                <td><a href="/viaje/unirse/{{ viaje.id }}">{{ viaje.planificador }}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/viaje/nuevo" class="add-trip-btn">Add a Job</a>
+</body>
+</html>
